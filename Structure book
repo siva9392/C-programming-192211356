@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+
+
+struct book {
+    char title[50];
+    char author[50];
+    int pages;
+};
+
+
+void sort_books(struct book b[], int n) {
+    struct book temp;
+
+
+    for (int i = 0; i < n-1; i++) {
+        for (int j = i+1; j < n; j++) {
+            if (strcmp(b[i].title, b[j].title) > 0) {
+                temp = b[i];
+                b[i] = b[j];
+                b[j] = temp;
+            }
+        }
+    }
+}
+
+
+int main() {
+    // declare an array of 3 book structures
+    struct book library[3];
+
+
+    // set values for the books
+    strcpy(library[0].title, "The Great Gatsby");
+    strcpy(library[0].author, "F. Scott Fitzgerald");
+    library[0].pages = 180;
+
+
+    strcpy(library[1].title, "Pride and Prejudice");
+    strcpy(library[1].author, "Jane Austen");
+    library[1].pages = 350;
+
+
+    strcpy(library[2].title, "To Kill a Mockingbird");
+    strcpy(library[2].author, "Harper Lee");
+    library[2].pages = 320;
+
+
+    // sort the books by title
+    sort_books(library, 3);
+
+
+    // print the sorted books
+    for (int i = 0; i < 3; i++) {
+        printf("Book %d\n", i+1);
+        printf("Title: %s\n", library[i].title);
+        printf("Author: %s\n", library[i].author);
+        printf("Pages: %d\n", library[i].pages);
+        printf("\n");
+    }
+
+
+    return 0;
+}
